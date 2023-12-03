@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const ALL_CATEGORIES_API_BASE_URL = 'http://localhost:8080/products/categorylist';
-const PRODUCT_FOR_SELECTED_CATEGORY_API_BASE_URL = 'http://localhost:8080/products/category/';
-const All_PRODUCTS_API_BASE_URL = 'http://localhost:8080/products/allProducts';
+const ALL_CATEGORIES_API_BASE_URL = 'http://localhost:9010/products/categorylist';
+const PRODUCT_FOR_SELECTED_CATEGORY_API_BASE_URL = 'http://localhost:9010/products/category/';
+const All_PRODUCTS_API_BASE_URL = 'http://localhost:9010/products/allProducts';
 
 class ProductsService {
 
