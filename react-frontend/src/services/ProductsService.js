@@ -3,6 +3,7 @@ import axios from 'axios';
 const ALL_CATEGORIES_API_BASE_URL = 'http://localhost:9010/products/categorylist';
 const PRODUCT_FOR_SELECTED_CATEGORY_API_BASE_URL = 'http://localhost:9010/products/category/';
 const All_PRODUCTS_API_BASE_URL = 'http://localhost:9010/products/allProducts';
+const PRODUCT_FOR_SEARCH_STRING_API_BASE_URL = 'http://localhost:9010/products/searchProductsByTitleNameOrShortDesc/';
 
 class ProductsService {
 
@@ -16,6 +17,10 @@ class ProductsService {
 
     getProductsForSelectedCategory(selectedCategory) {
         return axios.get(PRODUCT_FOR_SELECTED_CATEGORY_API_BASE_URL + selectedCategory);
+    }
+
+    getProductsForSearchString(searchString) {
+        return axios.get(PRODUCT_FOR_SEARCH_STRING_API_BASE_URL + searchString);
     }
 }
 
