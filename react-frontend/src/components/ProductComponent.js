@@ -7,6 +7,7 @@ function ProductComponent() {
 
     const [products, setProducts] = useState([])
     const [categoriesAll, setCategoriesAll] = useState([])
+    const [searchString, setSearchString] = useState([])
 
     useEffect(() => {
         getProducts()
@@ -43,13 +44,31 @@ function ProductComponent() {
         }
         else {
             ProductsService.getProductsForSelectedCategory(event.target.value).then((response) => {
-                // setProductsForSelectedCategory(event.target.value)
-                // alert(event.target.value)
                 setProducts(response.data)
                 // console.log(response.data);
             });
         }
     };
+
+    const handleSearchStringChange = (event) => {
+        setSearchString(event.target.value);
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if (searchString == '') {
+            ProductsService.getProducts().then((response) => {
+                setProducts(response.data)
+                // console.log(response.data);
+            });
+        }
+        else {
+            ProductsService.getProductsForSearchString(searchString).then((response) => {
+                setProducts(response.data)
+                // console.log(response.data);
+            });
+        }
+    }
 
     return (
         <div className="container">
@@ -66,8 +85,10 @@ function ProductComponent() {
                     }
                 </select>
 
-                <input type='text' id='searchBarInput' />
-                <button id='searchButton'>Search</button>
+                <form onSubmit={handleSubmit}>
+                    <input type='text' id='searchBarInput' value={searchString} onChange={handleSearchStringChange} />
+                    <button id='searchButton' type='submit' >Search</button>
+                </form>
 
             </div>
             <table className="table table-striped">
